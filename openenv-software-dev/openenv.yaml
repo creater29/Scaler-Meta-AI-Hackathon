@@ -1,0 +1,29 @@
+env_id: openenv/software-dev-v1
+version: "0.1.0"
+title: "Software Development RL Environment"
+description: >
+  An OpenEnv-compatible environment where AI agents solve real software
+  engineering tasks: bug fixes, feature implementations, and code reviews.
+  Evaluation uses both programmatic graders and optional LLM scoring.
+domain: software_development
+task_count: 3
+difficulty_levels: [easy, medium, hard]
+action_space_type: Dict
+observation_space_type: Dict
+max_steps: 30
+grading_methods: [programmatic, llm]
+authors: ["openenv-software-dev-team"]
+license: MIT
+tags: [software-engineering, bug-fix, code-review, feature-impl, grpo, llm-rl]
+hf_space: openenv/software-dev-v1
+server:
+  port: 8000
+  endpoints:
+    reset: POST /reset
+    step:  POST /step
+    state: GET  /state
+    tasks: GET  /tasks
+env_vars:
+  API_BASE_URL: "LLM API base URL (optional, enables LLM grading)"
+  MODEL_NAME:   "LLM model name (default: gpt-4o-mini)"
+  HF_TOKEN:     "Hugging Face / LLM API key"
